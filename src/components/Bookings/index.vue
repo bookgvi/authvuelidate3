@@ -7,21 +7,36 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-table :fields="fields" :items="getBookings"></b-table>
+        <b-table
+          :fields="fields"
+          :items="getBookings"
+          selectable
+          select-mode="single"
+          @row-clicked="onRowClicked"
+        />
       </b-col>
     </b-row>
+    <booking-dialog
+      v-if="isShow"
+      :isShow="isShow"
+      :data="propsForModal"
+      @toggleModal="toggleModal"
+    />
   </b-container>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { fields } from '@/components/Bookings/columns'
-
+import bookingDialog from '@/components/Bookings/bookingDialog'
 export default {
   name: 'index',
+  components: { bookingDialog },
   data () {
     return {
-      fields
+      fields,
+      isShow: false,
+      propsForModal: {}
     }
   },
   computed: {
@@ -37,11 +52,18 @@ export default {
   methods: {
     ...mapActions([
       'getAll'
-    ])
+    ]),
+    onRowClicked (item) {
+      this.propsForModal = item
+      this.isShow = true
+      console.log(item)
+    },
+    toggleModal (val) {
+      this.isShow = val
+    }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

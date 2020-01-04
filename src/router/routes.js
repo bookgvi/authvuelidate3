@@ -1,4 +1,4 @@
-import { isAuth, isNotAuth } from '../helper/Auth'
+import { isAuth } from '../helper/Auth'
 
 export const routes = [
   {
@@ -10,7 +10,6 @@ export const routes = [
   {
     path: '/',
     name: 'home',
-    beforeEnter: isNotAuth,
     component: () => import('../views/Home'),
     children: [
       { path: '', component: () => import('../views/Hello') },

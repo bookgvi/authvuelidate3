@@ -42,9 +42,9 @@ export default {
       e.preventDefault()
       const { data, errors } = await this.login({ login: this.name, password: this.pass })
       if (data) {
+        console.log(data)
         const token = data.access_token
         localStorage.setItem('jwt', token)
-        location.reload(true)
       } else if (errors) {
         console.warn('Возникли ошибки при авторизации', errors)
       }

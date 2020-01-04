@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import { routes } from '@/router/routes'
+import { hasTokenExpired } from '@/helper/Auth'
 
 Vue.use(VueRouter)
 
@@ -12,7 +13,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('jwt')
-  if (!token && to.path !== '/login') {
+  const isTokenExpired = hasTokenExpired()
+  if ((!token || isTokenExpired) && to.path !== '/login') {
     next('/login')
   } else {
     next()

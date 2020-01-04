@@ -42,11 +42,13 @@ export default {
       e.preventDefault()
       const { data, errors } = await this.login({ login: this.name, password: this.pass })
       if (data) {
-        console.log(data)
+        const expiredAt = data.expires_at
         const token = data.access_token
         localStorage.setItem('jwt', token)
+        localStorage.setItem('expiredAt', expiredAt)
+        this.$router.replace('/')
       } else if (errors) {
-        console.warn('Возникли ошибки при авторизации', errors)
+        console.warn('Возникли ошибки при авторизации. ', errors)
       }
     }
   }

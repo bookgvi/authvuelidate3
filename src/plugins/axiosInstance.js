@@ -20,6 +20,7 @@ instance.interceptors.response.use(response => response, error => {
       case 401:
       case 403:
         localStorage.removeItem('jwt')
+        localStorage.removeItem('expiredAt')
         // location.reload(true) // if server response is correct!!! Not now
         break
     }

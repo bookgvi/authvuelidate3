@@ -24,8 +24,9 @@ instance.interceptors.response.use(response => response, error => {
         // location.reload(true) // if server response is correct!!! Not now
         break
     }
-    return Promise.reject(error)
+    return response
   }
+  return Promise.reject(error)
 })
 
 Plugin.install = (Vue, option) => {

@@ -2,12 +2,12 @@ import * as types from './mutation-types'
 import Vue from 'vue'
 
 export const actions = {
-  async login ({ state }, payload) {
+  async authLogin ({ state }, payload) {
     try {
       const { data } = await Vue.$http.post(state.LoginURL, payload)
       return data
     } catch (err) {
-      console.warn('...Catched: ', err.message)
+      console.warn('...Catched authorization: ', err.message)
       return err
     }
   },
@@ -20,7 +20,7 @@ export const actions = {
       commit(types.SAVE_DATA, toState)
       return data
     } catch (err) {
-      console.warn('...Catched: ', err.message)
+      console.warn('...Catched GET: ', err.message)
       return err
     }
   }

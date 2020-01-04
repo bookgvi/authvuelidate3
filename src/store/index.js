@@ -5,7 +5,9 @@ import { mutations } from './mutations'
 import { actions } from './actions'
 Vue.use(Vuex)
 const state = {
-  LoginURL: '/api/auth/login'
+  LoginURL: '/api/auth/login',
+  commonURL: '/api/cabinet/v1.0',
+  customersColumns: ['firstName', 'lastName', 'rating', 'chat']
 }
 
 export default new Vuex.Store({

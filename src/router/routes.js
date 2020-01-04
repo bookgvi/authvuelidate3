@@ -13,20 +13,10 @@ export const routes = [
     beforeEnter: isNotAuth,
     component: () => import('../views/Home'),
     children: [
-      {
-        path: '',
-        component: () => import('../views/Hello')
-      },
-      {
-        path: 'hello',
-        name: 'hello',
-        component: () => import('../views/Hello')
-      },
-      {
-        path: 'about',
-        name: 'about',
-        component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-      }
+      { path: '', component: () => import('../views/Hello') },
+      { path: 'customers', name: 'customers', component: () => import('../views/Customers') },
+      { path: 'hello', name: 'hello', component: () => import('../views/Hello') },
+      { path: 'about', name: 'about', component: () => import(/* webpackChunkName: "about" */ '../views/About.vue') }
     ]
   }
 ]

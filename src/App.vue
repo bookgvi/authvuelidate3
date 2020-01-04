@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/hello">Hello</router-link> |
       <router-link to="/customers">Клиенты</router-link> |
+      <router-link to="/bookings">Бронирования</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view/>

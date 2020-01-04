@@ -7,7 +7,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-table :items="getCustomers"></b-table>
+        <b-table :fields="fields" :items="getCustomers"></b-table>
       </b-col>
     </b-row>
   </b-container>
@@ -19,9 +19,7 @@ export default {
   name: 'index',
   data () {
     return {
-      items: [
-        { num: 1, name: 'Ivan', lastName: 'Ivanov' }
-      ]
+      fields: ['fullName', 'chat']
     }
   },
   computed: {
@@ -31,6 +29,7 @@ export default {
   },
   async mounted () {
     const payload = { page: this.$route.path }
+    if (this.getCustomers) return
     this.getAll(payload)
   },
   methods: {

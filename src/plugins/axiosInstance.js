@@ -23,7 +23,7 @@ instance.interceptors.response.use(response => response, error => {
         // location.reload(true) // if server response is correct!!! Not now
         break
     }
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 })
 

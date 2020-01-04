@@ -1,7 +1,16 @@
+import { isAuth, isNotAuth } from '../helper/Auth'
+
 export const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    beforeEnter: isAuth,
+    component: () => import('../views/Login')
+  },
   {
     path: '/',
     name: 'home',
+    beforeEnter: isNotAuth,
     component: () => import('../views/Home'),
     children: [
       {

@@ -4,7 +4,9 @@ import { getters } from './getters'
 import { mutations } from './mutations'
 import { actions } from './actions'
 Vue.use(Vuex)
-const state = {}
+const state = {
+  LoginURL: '/api/auth/login'
+}
 
 export default new Vuex.Store({
   state,

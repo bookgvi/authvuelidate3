@@ -56,7 +56,6 @@ export default {
     onRowClicked (item) {
       this.propsForModal = item
       this.isShow = true
-      console.log(item)
     },
     toggleModal (val) {
       this.isShow = val

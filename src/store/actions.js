@@ -4,8 +4,8 @@ import Vue from 'vue'
 export const actions = {
   async authLogin ({ state }, payload) {
     try {
-      const { data } = await Vue.$http.post(state.LoginURL, payload)
-      return data
+      const res = await Vue.$http.post(state.LoginURL, payload)
+      return res
     } catch (err) {
       console.warn('...Catched authorization: ', err.message)
       return err

@@ -39,7 +39,8 @@ export default {
       pass: '',
       password: null,
       alert: {
-        title: ''
+        title: '',
+        variant: 'info'
       }
     }
   },
@@ -58,18 +59,21 @@ export default {
         localStorage.setItem('expiredAt', expiredAt)
         this.$router.replace('/')
       } else if (errors) {
+        this.alert.variant = 'warning'
+        if ([404, 401, 403].indexOf(res.status) !== -1) {
+          this.alert.variant = 'danger'
+        }
         errors.forEach(item => {
           this[item.source] = false
           this.alert.title = item.title
           this.$bvToast.toast(`${this.alert.title}`, {
             appendToast: true,
             autoHideDelay: 4000,
-            title: 'Предупреждение'
+            title: 'Предупреждение',
+            variant: this.alert.variant
           })
         })
         console.warn('Возникли ошибки при авторизации. ')
-        if ([404, 401, 403].indexOf(res.status) !== -1) {
-        }
       }
     },
     onInput (e, value, state) {

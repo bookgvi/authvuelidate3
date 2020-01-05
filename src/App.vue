@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/hello">Hello</router-link> |
-      <router-link to="/customers">Клиенты</router-link> |
-      <router-link to="/bookings">Бронирования</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <b-container>
+      <b-row id="nav" class="mb-3">
+        <b-col class="fixed-top bg-light py-3">
+          <router-link to="/hello">Hello</router-link> |
+          <router-link to="/customers">Клиенты</router-link> |
+          <router-link to="/bookings">Бронирования</router-link> |
+          <router-link to="/about">About</router-link>
+        </b-col>
+      </b-row>
+      <b-row align-h="center">
+        <router-view/>
+      </b-row>
+    </b-container>
   </div>
 </template>
 

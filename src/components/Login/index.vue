@@ -25,18 +25,6 @@
         </b-col>
       </b-row>
     </b-form>
-    <b-row>
-      <b-col cols="3">
-        <b-alert
-          :show="alert.countDown"
-          @dismiss-count-down="countDownChanged"
-          fade
-          variant="danger"
-          dismissible
-          class="mt-5"
-        >{{ alert.title }}</b-alert>
-      </b-col>
-    </b-row>
   </b-container>
 </template>
 
@@ -51,9 +39,7 @@ export default {
       pass: '',
       password: null,
       alert: {
-        title: '',
-        countDown: 0,
-        dismisSec: 5
+        title: ''
       }
     }
   },
@@ -75,19 +61,20 @@ export default {
         errors.forEach(item => {
           this[item.source] = false
           this.alert.title = item.title
+          this.$bvToast.toast(`${this.alert.title}`, {
+            appendToast: true,
+            autoHideDelay: 4000,
+            title: 'Предупреждение'
+          })
         })
         console.warn('Возникли ошибки при авторизации. ')
         if ([404, 401, 403].indexOf(res.status) !== -1) {
-          this.alert.countDown = this.alert.dismisSec
         }
       }
     },
     onInput (e, value, state) {
       this[value] = e.target.value
       this[state] = null
-    },
-    countDownChanged (val) {
-      this.alert.countDown = val
     }
   }
 }

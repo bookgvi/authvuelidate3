@@ -1,5 +1,5 @@
 <template>
-  <b-modal v-model="isShowVM" header-border-variant="white" footer-border-variant="white">
+  <b-modal id="bookingDialog" header-border-variant="white" footer-border-variant="white">
     <template #modal-header="{ close }">
       <b-container>
         <b-row align-v="center">
@@ -51,16 +51,6 @@ export default {
     isShow: {
       type: Boolean,
       default: () => false
-    }
-  },
-  computed: {
-    isShowVM: {
-      get () {
-        return this.isShow
-      },
-      set (val) {
-        this.$emit('toggleModal', val)
-      }
     }
   }
 }

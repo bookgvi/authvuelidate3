@@ -16,12 +16,7 @@
         />
       </b-col>
     </b-row>
-    <booking-dialog
-      v-if="isShow"
-      :isShow="isShow"
-      :data="propsForModal"
-      @toggleModal="toggleModal"
-    />
+    <booking-dialog :data="propsForModal" />
   </b-container>
 </template>
 
@@ -35,7 +30,6 @@ export default {
   data () {
     return {
       fields,
-      isShow: false,
       propsForModal: {}
     }
   },
@@ -55,10 +49,7 @@ export default {
     ]),
     onRowClicked (item) {
       this.propsForModal = item
-      this.isShow = true
-    },
-    toggleModal (val) {
-      this.isShow = val
+      this.$bvModal.show('bookingDialog')
     }
   }
 }

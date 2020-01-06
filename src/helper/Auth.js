@@ -1,9 +1,10 @@
 export function hasTokenExpired () {
   let isTokenExpired = true
   const expiredAt = Date.parse(localStorage.getItem('expiredAt'))
-  if (!expiredAt || isNaN(expiredAt)) return isTokenExpired
-  const currentDateTime = Date.parse(new Date())
-  isTokenExpired = expiredAt - currentDateTime < 0
+  if (expiredAt) {
+    const currentDateTime = Date.parse(new Date())
+    isTokenExpired = expiredAt < currentDateTime
+  }
   return isTokenExpired
 }
 export function isAuth (to, from, next) {

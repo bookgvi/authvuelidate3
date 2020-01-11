@@ -46,7 +46,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      '__http'
+      '$http'
     ]),
     async onLogin (e) {
       e.preventDefault()
@@ -55,7 +55,7 @@ export default {
         password: this.pass
       }
       const url = 'https://pre.ugoloc.ucann.ru/api/auth/login'
-      const res = await this.__http({ payload: login, method: 'POST', url })
+      const res = await this.$http({ payload: login, method: 'POST', url })
       const { data, errors } = res
       if (data) {
         const expiredAt = data.expires_at

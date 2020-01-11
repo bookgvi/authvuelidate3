@@ -1,7 +1,7 @@
 import * as types from './mutation-types'
 
 export const actions = {
-  async __http ({ state }, params) {
+  async $http ({ state }, params) {
     const { payload, method, url } = params
     const jwt = localStorage.getItem('jwt')
     return new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ export const actions = {
     const { page, filter } = payload
     const url = state.baseURL + state.commonURL + page
     try {
-      const { data } = await dispatch('__http', { payload: filter, method: 'GET', url })
+      const { data } = await dispatch('$http', { payload: filter, method: 'GET', url })
       const toState = { page: page.split('/').pop(), items: data.items }
       commit(types.SAVE_DATA, toState)
       return data

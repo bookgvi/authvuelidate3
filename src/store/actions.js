@@ -2,14 +2,31 @@ import * as types from './mutation-types'
 import Vue from 'vue'
 
 export const actions = {
-  async authLogin ({ state }, payload) {
-    try {
-      const res = await Vue.$http.post(state.LoginURL, payload)
-      return res
-    } catch (err) {
-      console.warn('...Catched authorization: ', err.message)
-      return err
-    }
+  async __http ({ state }, params) {
+    const { payload, method, url } = params
+    console.log(url)
+    const jwt = localStorage.getItem('jwt')
+    return new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest()
+      xhr.open(method, url)
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      if (jwt) {
+        xhr.setRequestHeader('Authorization', `Bearer ${jwt}`)
+      }
+      xhr.addEventListener('load', () => {
+        if (xhr.status === 200 || xhr.readyState === 4) {
+          resolve(JSON.parse(xhr.response))
+        } else {
+          const error = new Error(xhr.statusText)
+          error.code = xhr.status
+          reject(error)
+        }
+      })
+      xhr.addEventListener('error', () => {
+        reject(new Error('Network error...'))
+      })
+      xhr.send(JSON.stringify(payload))
+    })
   },
   async getAll ({ state, commit }, payload) {
     const { page, filter } = payload

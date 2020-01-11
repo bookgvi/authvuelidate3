@@ -1,10 +1,8 @@
 import * as types from './mutation-types'
-import Vue from 'vue'
 
 export const actions = {
   async __http ({ state }, params) {
     const { payload, method, url } = params
-    console.log(url)
     const jwt = localStorage.getItem('jwt')
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest()
@@ -28,11 +26,11 @@ export const actions = {
       xhr.send(JSON.stringify(payload))
     })
   },
-  async getAll ({ state, commit }, payload) {
+  async getAll ({ state, commit, dispatch }, payload) {
     const { page, filter } = payload
-    const URL = state.commonURL + page
+    const url = state.baseURL + state.commonURL + page
     try {
-      const { data } = await Vue.$http.get(URL, filter).then(resp => resp.data)
+      const { data } = await dispatch('__http', { payload: filter, method: 'GET', url })
       const toState = { page: page.split('/').pop(), items: data.items }
       commit(types.SAVE_DATA, toState)
       return data

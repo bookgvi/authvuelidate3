@@ -5,6 +5,7 @@ import { mutations } from './mutations'
 import { actions } from './actions'
 Vue.use(Vuex)
 const state = {
+  baseURL: 'https://pre.ugoloc.ucann.ru',
   LoginURL: '/api/auth/login',
   commonURL: '/api/cabinet/v1.0'
 }

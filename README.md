@@ -1,4 +1,4 @@
-# authvuelidate3
+# authvuelidate3 (вместо axios используется XMLHttpRequest)
 
 ## Project setup
 ```

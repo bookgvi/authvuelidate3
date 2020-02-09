@@ -78,7 +78,7 @@ export default {
             variant: this.alert.variant
           })
         })
-        console.warn('Возникли ошибки при авторизации. ')
+        // console.warn('Возникли ошибки при авторизации. ')
       }
     },
     onInput (e, value, state) {

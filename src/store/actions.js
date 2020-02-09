@@ -35,7 +35,7 @@ export const actions = {
       commit(types.SAVE_DATA, toState)
       return data
     } catch (err) {
-      console.warn('...Catched GET: ', err.message)
+      // console.warn('...Catched GET: ', err.message)
       return err
     }
   }

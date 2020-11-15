@@ -1,7 +1,7 @@
 # authvuelidate3 (вместо axios используется XMLHttpRequest)
 
 ## Project setup
-```
+```  
 yarn install
 ```
 
